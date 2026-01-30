@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown → Anki CSV Converter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .subtitle {
+            color: #888;
+            font-size: 0.875rem;
+            margin-bottom: 24px;
+        }
+        .format-info {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+            font-size: 0.875rem;
+        }
+        .format-info h3 {
+            font-size: 0.875rem;
+            color: #aaa;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .format-info code {
+            background: #252525;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: #7dd3fc;
+        }
+        .format-info pre {
+            background: #252525;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-top: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: #a5a5a5;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .panel {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .panel-header {
+            background: #252525;
+            padding: 12px 16px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .panel-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #ccc;
+        }
+        .panel-actions {
+            display: flex;
+            gap: 8px;
+        }
+        button {
+            background: #333;
+            color: #ccc;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #444;
+        }
+        button.primary {
+            background: #3b82f6;
+            color: white;
+        }
+        button.primary:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: none;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+        }
+        textarea::placeholder {
+            color: #555;
+        }
+        #output {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .stats {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 20px;
+            display: flex;
+            gap: 24px;
+            font-size: 0.875rem;
+        }
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-value {
+            color: #fff;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        .error {
+            background: #450a0a;
+            border: 1px solid #7f1d1d;
+            color: #fca5a5;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 0.875rem;
+            display: none;
+        }
+        .error.visible {
+            display: block;
+        }
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .preview-table th,
+        .preview-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        .preview-table th {
+            background: #252525;
+            color: #888;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        .preview-table td {
+            color: #aaa;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .preview-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Markdown → Anki CSV Converter</h1>
+        <p class="subtitle">Convert markdown notes to Anki-importable CSV format</p>
+
+        <div class="format-info">
+            <h3>Supported Format</h3>
+            <p>Use <code>#</code> for questions and <code>></code> for answers:</p>
+            <pre># What is the powerhouse of the cell?
+> The mitochondria is the powerhouse of the cell, responsible for producing ATP through cellular respiration.
+
+# What is photosynthesis?
+> The process by which plants convert light energy into chemical energy (glucose).</pre>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Markdown Input</span>
+                    <div class="panel-actions">
+                        <button onclick="loadExample()">Load Example</button>
+                        <button onclick="clearInput()">Clear</button>
+                    </div>
+                </div>
+                <textarea id="input" placeholder="Paste your markdown flashcards here...
+
+# Your question here?
+> Your answer here.
+
+# Another question?
+> Another answer."></textarea>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Preview & Output</span>
+                    <div class="panel-actions">
+                        <button onclick="copyCSV()">Copy CSV</button>
+                        <button class="primary" onclick="downloadCSV()">Download</button>
+                    </div>
+                </div>
+                <div class="preview-container" id="preview">
+                    <table class="preview-table" id="previewTable">
+                        <thead>
+                            <tr>
+                                <th>Front</th>
+                                <th>Back</th>
+                                <th>Tags</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewBody">
+                            <tr>
+                                <td colspan="3" style="text-align: center; color: #555; padding: 40px;">
+                                    Enter markdown to see preview
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats" id="stats">
+            <div class="stat">
+                <span class="stat-label">Cards</span>
+                <span class="stat-value" id="cardCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Questions</span>
+                <span class="stat-value" id="questionCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Unmatched</span>
+                <span class="stat-value" id="unmatchedCount">0</span>
+            </div>
+        </div>
+
+        <div class="error" id="error"></div>
+    </div>
+
+    <script>
+        const input = document.getElementById('input');
+        const previewBody = document.getElementById('previewBody');
+        const cardCountEl = document.getElementById('cardCount');
+        const questionCountEl = document.getElementById('questionCount');
+        const unmatchedCountEl = document.getElementById('unmatchedCount');
+        const errorEl = document.getElementById('error');
+
+        let currentCSV = '';
+        let cards = [];
+
+        const exampleMarkdown = `# What is active recall?
+> Active recall is a learning technique that involves actively stimulating memory during the learning process. Instead of passively reviewing notes, you test yourself on the material.
+
+# What is the spacing effect?
+> The spacing effect demonstrates that learning is greater when studying is spread out over time, as opposed to studying the same amount of content in a single session.
+
+# What is interleaving?
+> Interleaving is a learning technique that involves mixing different topics or forms of practice, rather than focusing on one skill or topic at a time.
+
+# What is the forgetting curve?
+> The forgetting curve, discovered by Hermann Ebbinghaus, shows how information is lost over time when there is no attempt to retain it. Reviews at increasing intervals can flatten this curve.
+
+# What is elaborative interrogation?
+> Elaborative interrogation involves generating an explanation for why a fact or concept is true. By asking \"why?\" questions, you create deeper connections in memory.`;
+
+        function parseMarkdown(markdown) {
+            const lines = markdown.split('\n');
+            const cards = [];
+            let currentQuestion = null;
+            let currentAnswer = [];
+            let unmatched = 0;
+
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+
+                if (line.startsWith('# ')) {
+                    // Save previous card if exists
+                    if (currentQuestion && currentAnswer.length > 0) {
+                        cards.push({
+                            front: currentQuestion,
+                            back: currentAnswer.join('\\n'),
+                            tags: ''
+                        });
+                    } else if (currentQuestion) {
+                        unmatched++;
+                    }
+
+                    // Start new question
+                    currentQuestion = line.substring(2).trim();
+                    currentAnswer = [];
+                } else if (line.startsWith('> ')) {
+                    // Add to answer
+                    currentAnswer.push(line.substring(2).trim());
+                } else if (line === '' && currentAnswer.length > 0) {
+                    // Empty line ends answer
+                    if (currentQuestion) {
+                        cards.push({
+                            front: currentQuestion,
+                            back: currentAnswer.join('\\n'),
+                            tags: ''
+                        });
+                        currentQuestion = null;
+                        currentAnswer = [];
+                    }
+                } else if (line !== '') {
+                    // Continue previous answer if it exists
+                    if (currentAnswer.length > 0) {
+                        currentAnswer[currentAnswer.length - 1] += ' ' + line;
+                    }
+                }
+            }
+
+            // Handle last card
+            if (currentQuestion && currentAnswer.length > 0) {
+                cards.push({
+                    front: currentQuestion,
+                    back: currentAnswer.join('\\n'),
+                    tags: ''
+                });
+            } else if (currentQuestion) {
+                unmatched++;
+            }
+
+            return { cards, unmatched };
+        }
+
+        function escapeCSV(text) {
+            if (text.includes(',') || text.includes('"') || text.includes('\n')) {
+                return '"' + text.replace(/"/g, '""') + '"';
+            }
+            return text;
+        }
+
+        function generateCSV(cards) {
+            const header = 'Front,Back,Tags';
+            const rows = cards.map(card => {
+                return `${escapeCSV(card.front)},${escapeCSV(card.back)},${escapeCSV(card.tags)}`;
+            });
+            return [header, ...rows].join('\n');
+        }
+
+        function updatePreview() {
+            const markdown = input.value.trim();
+            errorEl.classList.remove('visible');
+
+            if (!markdown) {
+                previewBody.innerHTML = `
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #555; padding: 40px;">
+                            Enter markdown to see preview
+                        </td>
+                    </tr>
+                `;
+                cardCountEl.textContent = '0';
+                questionCountEl.textContent = '0';
+                unmatchedCountEl.textContent = '0';
+                currentCSV = '';
+                cards = [];
+                return;
+            }
+
+            const result = parseMarkdown(markdown);
+            cards = result.cards;
+            const unmatched = result.unmatched;
+
+            if (cards.length === 0 && markdown.length > 0) {
+                previewBody.innerHTML = `
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #ef4444; padding: 40px;">
+                            No valid flashcards found. Use # for questions and > for answers.
+                        </td>
+                    </tr>
+                `;
+            } else {
+                previewBody.innerHTML = cards.map(card => `
+                    <tr>
+                        <td title="${card.front.replace(/"/g, '&quot;')}">${card.front}</td>
+                        <td title="${card.back.replace(/"/g, '&quot;')}">${card.back.substring(0, 50)}${card.back.length > 50 ? '...' : ''}</td>
+                        <td>${card.tags || '-'}</td>
+                    </tr>
+                `).join('');
+            }
+
+            cardCountEl.textContent = cards.length;
+            questionCountEl.textContent = (markdown.match(/^# /gm) || []).length;
+            unmatchedCountEl.textContent = unmatched;
+            unmatchedCountEl.style.color = unmatched > 0 ? '#ef4444' : '#fff';
+
+            currentCSV = generateCSV(cards);
+        }
+
+        function loadExample() {
+            input.value = exampleMarkdown;
+            updatePreview();
+        }
+
+        function clearInput() {
+            input.value = '';
+            updatePreview();
+        }
+
+        function copyCSV() {
+            if (!currentCSV) return;
+            navigator.clipboard.writeText(currentCSV).then(() => {
+                const btn = document.querySelector('button[onclick="copyCSV()"]');
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = original, 1500);
+            });
+        }
+
+        function downloadCSV() {
+            if (!currentCSV || cards.length === 0) {
+                errorEl.textContent = 'No cards to download. Please add some markdown first.';
+                errorEl.classList.add('visible');
+                return;
+            }
+
+            const blob = new Blob([currentCSV], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `anki-cards-${cards.length}-${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        input.addEventListener('input', updatePreview);
+
+        // Initial load
+        updatePreview();
+    </script>
+</body>
+</html>

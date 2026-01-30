@@ -1,0 +1,36 @@
+baseURL = 'https://brainium.ai/'
+languageCode = 'en-us'
+title = 'brainium.ai'
+timeZone = 'UTC'
+
+summaryLength = 24
+enableRobotsTXT = true
+
+[params]
+  tagline = 'Research-backed guidance for thinking with AI'
+  description = 'Practical frameworks for cognitive leverage in the AI era. Translating research into actionable strategies for learning with AI without losing your edge.'
+  accent = '#d6b16e'
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+[outputs]
+  home = ['HTML', 'RSS']
+  section = ['HTML', 'RSS']
+  taxonomy = ['HTML']
+  term = ['HTML']
+
+[pagination]
+  pagerSize = 20
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    noClasses = false
+    lineNos = true
+    lineNumbersInTable = true
+    tabWidth = 2
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

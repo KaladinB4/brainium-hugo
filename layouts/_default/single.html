@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <article class="article">
+    <header class="page-header">
+      <h1>{{ .Title }}</h1>
+      {{ $showMeta := or (eq .Section "posts") (eq .Section "tools") }}
+      {{ if $showMeta }}
+      <p class="meta-line">
+        <span class="meta-label">published:</span>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+        <span class="meta-sep">·</span>
+        <span class="meta-label">reading time:</span>
+        <span>~{{ .ReadingTime }} min</span>
+      </p>
+      {{ end }}
+      {{ with .Params.description }}<p class="dek">{{ . }}</p>{{ end }}
+    </header>
+    <div class="article-body">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}

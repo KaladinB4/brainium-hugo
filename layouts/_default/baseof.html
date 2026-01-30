@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  {{- $desc := .Params.description | default .Site.Params.description -}}
+  {{- with $desc }}<meta name="description" content="{{ . }}" />{{ end -}}
+  <link rel="canonical" href="{{ .Permalink }}" />
+  {{- with .Site.Home.OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .RelPermalink }}" />
+  {{- end }}
+  {{- $ogTitle := .Title | default .Site.Title -}}
+  {{- $ogDesc := .Params.description | default .Site.Params.description -}}
+  <meta property="og:title" content="{{ $ogTitle }}" />
+  <meta property="og:description" content="{{ $ogDesc }}" />
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ $ogTitle }}" />
+  <meta name="twitter:description" content="{{ $ogDesc }}" />
+  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}" />
+</head>
+<body>
+  <a class="skip-link" href="#content">skip to content</a>
+  <header class="site-header">
+    <div class="site-title">
+      <a href="{{ "/" | relURL }}">{{ .Site.Title }}</a>
+    </div>
+    {{ with .Site.Params.tagline }}
+    <p class="site-tagline">{{ . }}</p>
+    {{ end }}
+    <nav class="site-nav" aria-label="Primary">
+      <a href="{{ "essays/" | relURL }}">[essays]</a>
+      <a href="{{ "research/" | relURL }}">[research]</a>
+      <a href="{{ "cognitive-tools/" | relURL }}">[cognitive-tools]</a>
+      <a href="{{ "about/" | relURL }}">[about]</a>
+      <a href="{{ "index.xml" | relURL }}">[rss]</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle between dark and light theme">[light]</button>
+    </nav>
+  </header>
+  <main id="content" class="content">
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer">
+    <span>{{ now.Format "2006" }} {{ .Site.Title }}</span>
+    <span class="footer-sep">·</span>
+    <a href="{{ "index.xml" | relURL }}">rss</a>
+  </footer>
+  <script src="{{ "js/theme.js" | relURL }}"></script>
+</body>
+</html>

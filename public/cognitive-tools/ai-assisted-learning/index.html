@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-Assisted Learning | brainium.ai</title><meta name="description" content="A tactical protocol for using AI coding assistants without cognitive offloading. Based on Anthropic&#39;s research on high-performing interaction patterns that preserve skill acquisition." /><link rel="canonical" href="https://brainium.ai/cognitive-tools/ai-assisted-learning/" />
+  <link rel="alternate" type="application/rss+xml" title="brainium.ai" href="/index.xml" /><meta property="og:title" content="AI-Assisted Learning" />
+  <meta property="og:description" content="A tactical protocol for using AI coding assistants without cognitive offloading. Based on Anthropic&#39;s research on high-performing interaction patterns that preserve skill acquisition." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://brainium.ai/cognitive-tools/ai-assisted-learning/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="AI-Assisted Learning" />
+  <meta name="twitter:description" content="A tactical protocol for using AI coding assistants without cognitive offloading. Based on Anthropic&#39;s research on high-performing interaction patterns that preserve skill acquisition." />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+  <a class="skip-link" href="#content">skip to content</a>
+  <header class="site-header">
+    <div class="site-title">
+      <a href="/">brainium.ai</a>
+    </div>
+    
+    <p class="site-tagline">Research-backed guidance for thinking with AI</p>
+    
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/essays/">[essays]</a>
+      <a href="/research/">[research]</a>
+      <a href="/cognitive-tools/">[cognitive-tools]</a>
+      <a href="/about/">[about]</a>
+      <a href="/index.xml">[rss]</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle between dark and light theme">[light]</button>
+    </nav>
+  </header>
+  <main id="content" class="content">
+    
+  <article class="article">
+    <header class="page-header">
+      <h1>AI-Assisted Learning</h1>
+      
+      
+      <p class="dek">A tactical protocol for using AI coding assistants without cognitive offloading. Based on Anthropic&#39;s research on high-performing interaction patterns that preserve skill acquisition.</p>
+    </header>
+    <div class="article-body">
+      <h2 id="the-problem">The Problem</h2>
+<p>AI coding tools are now table stakes. But recent research shows a 17% reduction in skill acquisition when used passively. The Active Prompting Protocol extracts the tactics used by high-performing developers in Anthropic&rsquo;s study.</p>
+<h2 id="core-principle">Core Principle</h2>
+<p><strong>Never request code without requesting understanding.</strong></p>
+<p>Every interaction should either:</p>
+<ol>
+<li>Build your mental model (conceptual queries)</li>
+<li>Test your understanding (explanations)</li>
+<li>Extend your capability (building on what you know)</li>
+</ol>
+<h2 id="the-protocol">The Protocol</h2>
+<h3 id="phase-1-conceptual-foundation-before-code">Phase 1: Conceptual Foundation (Before Code)</h3>
+<p><strong>When starting any new topic:</strong></p>
+<ol>
+<li>
+<p><strong>Abstraction Query</strong></p>
+<pre tabindex="0"><code>&#34;What are the 3-5 core abstractions in [topic]? 
+What problem does each solve?&#34;
+</code></pre></li>
+<li>
+<p><strong>Tradeoff Mapping</strong></p>
+<pre tabindex="0"><code>&#34;What are the common approaches to [problem]? 
+What are the tradeoffs between them?&#34;
+</code></pre></li>
+<li>
+<p><strong>Anti-pattern Check</strong></p>
+<pre tabindex="0"><code>&#34;What mistakes do beginners commonly make with [topic]? 
+Why do those approaches fail?&#34;
+</code></pre></li>
+</ol>
+<p><strong>Success metric</strong>: Can you explain the concepts without looking at code?</p>
+<h3 id="phase-2-implementation-during-code">Phase 2: Implementation (During Code)</h3>
+<p><strong>Option A: Self-Code First (Highest retention)</strong></p>
+<ul>
+<li>Write initial implementation yourself</li>
+<li>Use AI only for conceptual questions</li>
+<li>Debug independently before asking for help</li>
+</ul>
+<p><strong>Option B: Guided Generation (Faster, good retention)</strong></p>
+<pre tabindex="0"><code>&#34;Write [functionality] using [specific approach]. 
+Explain:
+- Why this approach vs [alternative]
+- What each section does
+- What could go wrong&#34;
+</code></pre><p><strong>Option C: Hybrid Mode (Complex new domains)</strong></p>
+<pre tabindex="0"><code>&#34;I&#39;ll write the code. You:
+1. Point out any approach errors
+2. Explain tradeoffs I miss
+3. Suggest improvements with reasoning&#34;
+</code></pre><p><strong>Never do</strong>: &ldquo;Write [functionality]&rdquo; (no context, no learning)</p>
+<h3 id="phase-3-verification-after-code">Phase 3: Verification (After Code)</h3>
+<p><strong>The Explanation Test</strong></p>
+<ul>
+<li>Close AI</li>
+<li>Write a paragraph explaining what the code does and why</li>
+<li>Reopen AI only if you get stuck</li>
+</ul>
+<p><strong>The Mutation Test</strong></p>
+<ul>
+<li>Ask: &ldquo;How would this code break if [condition]?&rdquo;</li>
+<li>Self-diagnose before AI confirms</li>
+<li>Practice error-mode thinking</li>
+</ul>
+<p><strong>The Extension Test</strong></p>
+<ul>
+<li>Modify working code yourself</li>
+<li>Use AI only for conceptual &ldquo;how would you approach&hellip;&rdquo; questions</li>
+</ul>
+<h2 id="tactical-prompts">Tactical Prompts</h2>
+<h3 id="for-debugging">For Debugging</h3>
+<p>❌ <strong>Anti-pattern</strong>: &ldquo;Fix this error&rdquo;
+✅ <strong>Protocol</strong>:</p>
+<pre tabindex="0"><code>&#34;I&#39;m seeing [error]. 
+What are the 3 most common causes of this error type? 
+Don&#39;t tell me which applies—just the categories.&#34;
+</code></pre><p>Then self-diagnose, return with hypothesis:</p>
+<pre tabindex="0"><code>&#34;I think it&#39;s [cause] because [reasoning]. 
+What else should I check?&#34;
+</code></pre><h3 id="for-code-review">For Code Review</h3>
+<p>❌ <strong>Anti-pattern</strong>: &ldquo;Is this good?&rdquo;
+✅ <strong>Protocol</strong>:</p>
+<pre tabindex="0"><code>&#34;Review this code for:
+1. Correctness edge cases
+2. Maintainability issues
+3. Alternative approaches with tradeoffs
+
+For each issue, explain the principle, not just the fix.&#34;
+</code></pre><h3 id="for-learning-apis">For Learning APIs</h3>
+<p>❌ <strong>Anti-pattern</strong>: &ldquo;How do I use [function]?&rdquo;
+✅ <strong>Protocol</strong>:</p>
+<pre tabindex="0"><code>&#34;What mental model should I have for [library]&#39;s [feature]? 
+What are 2-3 common misconceptions?&#34;
+</code></pre><p>Then: Read docs, try implementation, return with specific questions.</p>
+<h2 id="session-structure">Session Structure</h2>
+<p><strong>30-Minute Learning Session:</strong></p>
+<table>
+  <thead>
+      <tr>
+          <th>Time</th>
+          <th>Activity</th>
+          <th>Mode</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0-5 min</td>
+          <td>Conceptual queries</td>
+          <td>AI: Tutor</td>
+      </tr>
+      <tr>
+          <td>5-15 min</td>
+          <td>Self-code attempt</td>
+          <td>AI: None</td>
+      </tr>
+      <tr>
+          <td>15-20 min</td>
+          <td>Specific questions</td>
+          <td>AI: Consultant</td>
+      </tr>
+      <tr>
+          <td>20-25 min</td>
+          <td>Explanation test</td>
+          <td>AI: None</td>
+      </tr>
+      <tr>
+          <td>25-30 min</td>
+          <td>Extension/modification</td>
+          <td>AI: Minimal</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="indicators-youre-doing-it-right">Indicators You&rsquo;re Doing It Right</h2>
+<ul>
+<li>You spend more time reading explanations than copying code</li>
+<li>You can predict what code will do before running it</li>
+<li>You generate follow-up questions, not just acceptance</li>
+<li>Errors feel like learning moments, not blockers</li>
+<li>You use AI less over time for a given topic</li>
+</ul>
+<h2 id="indicators-youre-drifting">Indicators You&rsquo;re Drifting</h2>
+<ul>
+<li>Copy-paste without reading</li>
+<li>&ldquo;Fix this&rdquo; becoming default</li>
+<li>Can&rsquo;t explain code after writing it</li>
+<li>Same errors recurring</li>
+<li>Increasing AI dependence over time</li>
+</ul>
+<h2 id="integration-with-other-cognitive-tools">Integration with Other Cognitive Tools</h2>
+<ul>
+<li><strong>Active Recall</strong>: Use explanation tests after AI sessions</li>
+<li><strong>Spaced Repetition</strong>: Review AI-assisted code after 1 day, 3 days, 1 week</li>
+<li><strong>Deep Work</strong>: AI sessions during focused blocks, not fragmented interruptions</li>
+</ul>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="/research/anthropic-coding-skills-2026/">Anthropic coding skills study</a> — Research foundation</li>
+<li><a href="/research/brain-on-chatgpt/">MIT cognitive debt study</a> — Essay writing domain</li>
+<li><a href="/essays/debugging-skill-decay/">Debugging skill retention</a> — Why errors matter</li>
+</ul>
+<hr>
+<p><strong>Related:</strong></p>
+<ul>
+<li><a href="/cognitive-tools/spaced-repetition/">Spaced Repetition</a> — Schedule AI session insights for long-term retention</li>
+<li><a href="/cognitive-tools/active-recall/">Active Recall</a> — Use explanation tests after AI interactions</li>
+<li><a href="/cognitive-tools/interleaving/">Interleaving</a> — Mix AI-assisted projects with different problem types</li>
+<li><a href="/cognitive-tools/deep-work/">Deep Work</a> — Protect AI sessions from interruptions and context switching</li>
+</ul>
+<hr>
+<p><strong>Version</strong>: 1.0<br>
+<strong>Source</strong>: Anthropic RCT + qualitative analysis<br>
+<strong>Tested</strong>: Python, Rust, TypeScript learning scenarios<br>
+<strong>Feedback</strong>: <a href="mailto:hello@brainium.ai">hello@brainium.ai</a></p>
+
+    </div>
+  </article>
+
+  </main>
+  <footer class="site-footer">
+    <span>2026 brainium.ai</span>
+    <span class="footer-sep">·</span>
+    <a href="/index.xml">rss</a>
+  </footer>
+  <script src="/js/theme.js"></script>
+</body>
+</html>

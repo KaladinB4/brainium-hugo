@@ -1,0 +1,25 @@
+Front,Back,Tags
+"What is the Pomodoro Technique?","A time management method using 25-minute focused work sessions followed by 5-minute breaks.<br><br><b>Why use it:</b> Prevents burnout and maintains focus through structured intervals. After 4 pomodoros, take a 15-30 minute break.
+
+<b>Tag:</b> #productivity #timemanagement","vocabulary,productivity,study-strategy"
+"What is the Feynman Technique?","Explain concepts in simple terms (like teaching a child) to identify gaps in your understanding.<br><br><b>Why use it:</b> If you can't explain it simply, you don't understand it well enough. Reveals hidden knowledge gaps.
+
+<b>Steps:</b> 1) Choose concept 2) Explain to beginner 3) Identify gaps 4) Review & simplify","vocabulary,study-strategy,comprehension"
+"What is Spaced Repetition?","A learning technique with review intervals increasing exponentially based on performance.<br><br><b>Why use it:</b> Flatten the forgetting curve. Reviews at 1→3→7→14→30 day intervals maximize retention with minimum effort.
+
+<b>Tag:</b> #memory #retention","vocabulary,memory,retention"
+"What is Active Recall?","The practice of actively stimulating memory during learning through self-testing.<br><br><b>Why use it:</b> Retrieval practice produces 50% better long-term retention than passive re-reading. Close your notes and write what you remember first.
+
+<b>Tag:</b> #retrieval-practice #testing-effect","vocabulary,memory,retrieval"
+"What is Interleaving?","Mixing different topics or skills during study rather than blocking one topic at a time.<br><br><b>Why use it:</b> Improves ability to select appropriate strategies for different problems. Example: 5 algebra → 5 geometry → 5 calculus instead of 30 algebra problems.
+
+<b>Tag:</b> #practice #problem-solving","vocabulary,practice,problem-solving"
+"The Immortal Jellyfish - What is it?","<b>Turritopsis dohrnii</b> can reverse its life cycle when stressed or injured, transforming cells back to polyp form.<br><br><b>Why it matters:</b> Scientists study these jellyfish to understand stem cells and cellular regeneration—potential applications for human medicine and aging research.
+
+<b>Key concept:</b> Biological immortality through cellular transdifferentiation","fact,biology,science,immortality"
+"Bananas Are Radioactive - True or False?","TRUE. Bananas contain potassium-40, a naturally occurring radioactive isotope.<br><br><b>The numbers:</b> One banana = ~0.1 microsieverts. You'd need 10 million bananas at once for lethal radiation.<br><br><b>Why it matters:</b> Demonstrates that "radiation" isn't inherently dangerous—it's about dosage. We safely encounter small amounts daily from food, cosmic rays, and the environment. Context matters in risk assessment.
+
+<b>Takeaway:</b> Don't fear bananas—fear misunderstandings of scale","fact,science,radiation,chemistry"
+"The Shortest War in History - How long?","The Anglo-Zanzibar War of 1896 lasted <b>38-45 minutes</b>.<br><br><b>What happened:</b> When the Sultan died, his successor wasn't British-approved. Britain issued an ultimatum; when it expired, they opened fire with modern warships. The Sultan surrendered within the hour.<br><br><b>Why it matters:</b> Illustrates the power imbalances of colonialism and how massive technological disparities can decide geopolitical conflicts rapidly. A stark reminder of unequal military capabilities during the colonial era.
+
+<b>Context:</b> Zanzibar had ~3,000 men and a palace; Britain had 5 warships and modern artillery","fact,history,colonialism,war"

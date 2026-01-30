@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data → Anki CSV Converter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        .subtitle {
+            color: #888;
+            font-size: 0.875rem;
+            margin-bottom: 16px;
+        }
+        .input-mode {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .input-mode button {
+            background: #252525;
+            border: 1px solid #444;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+        }
+        .input-mode button.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+        .format-info {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            font-size: 0.875rem;
+        }
+        .format-info h3 {
+            font-size: 0.875rem;
+            color: #aaa;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .format-info code {
+            background: #252525;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: #7dd3fc;
+        }
+        .format-info pre {
+            background: #252525;
+            padding: 12px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin-top: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.8rem;
+            color: #a5a5a5;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .panel {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .panel-header {
+            background: #252525;
+            padding: 12px 16px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .panel-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #ccc;
+        }
+        .panel-actions {
+            display: flex;
+            gap: 8px;
+        }
+        button {
+            background: #333;
+            color: #ccc;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #444;
+        }
+        button.primary {
+            background: #3b82f6;
+            color: white;
+        }
+        button.primary:hover {
+            background: #2563eb;
+        }
+        button.secondary {
+            background: #7c3aed;
+            color: white;
+        }
+        button.secondary:hover {
+            background: #6d28d9;
+        }
+        textarea {
+            width: 100%;
+            min-height: 400px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: none;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+        }
+        textarea::placeholder {
+            color: #555;
+        }
+        .stats {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-top: 16px;
+            display: flex;
+            gap: 24px;
+            font-size: 0.875rem;
+            flex-wrap: wrap;
+        }
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .stat-value {
+            color: #fff;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        .error {
+            background: #450a0a;
+            border: 1px solid #7f1d1d;
+            color: #fca5a5;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 0.875rem;
+            display: none;
+        }
+        .error.visible {
+            display: block;
+        }
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .preview-table th,
+        .preview-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        .preview-table th {
+            background: #252525;
+            color: #888;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+        .preview-table td {
+            color: #aaa;
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .preview-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .example-btn {
+            background: #252525;
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.875rem;
+        }
+        .example-btn:hover {
+            background: #333;
+            border-color: #555;
+        }
+        .example-btn strong {
+            color: #fff;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .example-btn small {
+            color: #888;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data → Anki CSV Converter</h1>
+        <p class="subtitle">Convert student data, vocabulary, and facts to Anki flashcards</p>
+
+        <div class="input-mode">
+            <button class="active" onclick="setMode('flashcards')" id="mode-flashcards">Q&A Flashcards</button>
+            <button onclick="setMode('vocabulary')" id="mode-vocabulary">Vocabulary</button>
+            <button onclick="setMode('facts')" id="mode-facts">Facts Collection</button>
+        </div>
+
+        <div class="format-info" id="formatInfo">
+            <h3>Current Format: Q&A Flashcards</h3>
+            <p>Use <code>#</code> for questions and <code>></code> for answers:</p>
+            <pre># What is active recall?
+> Active recall is a learning technique where you test yourself on material.
+
+# What is the spacing effect?
+> Learning is greater when studying is spread out over time.</pre>
+            
+            <div class="example-grid">
+                <button class="example-btn" onclick="loadExample('cognitive')">
+                    <strong>Cognitive Tools</strong>
+                    <small>Study techniques and learning concepts</small>
+                </button>
+                <button class="example-btn" onclick="loadExample('vocabulary')">
+                    <strong>Vocabulary</strong>
+                    <small>Learning terminology with definitions</small>
+                </button>
+                <button class="example-btn" onclick="loadExample('facts')">
+                    <strong>Interesting Facts</strong>
+                    <small>Science, history, and culture facts</small>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Input Data</span>
+                    <div class="panel-actions">
+                        <button onclick="clearInput()">Clear</button>
+                    </div>
+                </div>
+                <textarea id="input" placeholder="Paste your data here..."></textarea>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">Anki Cards Preview</span>
+                    <div class="panel-actions">
+                        <button onclick="copyCSV()">Copy CSV</button>
+                        <button class="primary" onclick="downloadCSV()">Download</button>
+                    </div>
+                </div>
+                <div class="preview-container">
+                    <table class="preview-table">
+                        <thead>
+                            <tr>
+                                <th>Front</th>
+                                <th>Back</th>
+                                <th>Tags</th>
+                            </tr>
+                        </thead>
+                        <tbody id="previewBody">
+                            <tr>
+                                <td colspan="3" style="text-align: center; color: #555; padding: 40px;">
+                                    Enter data to see preview
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-label">Cards Generated</span>
+                <span class="stat-value" id="cardCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Data Items</span>
+                <span class="stat-value" id="itemCount">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Input Mode</span>
+                <span class="stat-value" id="currentMode">Flashcards</span>
+            </div>
+        </div>
+
+        <div class="error" id="error"></div>
+    </div>
+
+    <script>
+        const input = document.getElementById('input');
+        const previewBody = document.getElementById('previewBody');
+        const formatInfo = document.getElementById('formatInfo');
+        const cardCountEl = document.getElementById('cardCount');
+        const itemCountEl = document.getElementById('itemCount');
+        const currentModeEl = document.getElementById('currentMode');
+        const errorEl = document.getElementById('error');
+
+        let currentMode = 'flashcards';
+        let currentCSV = '';
+        let cards = [];
+
+        const examples = {
+            cognitive: `# What is active recall?
+> A learning technique where you actively test yourself instead of passively reviewing notes.
+
+# What is the spacing effect?
+> Learning is more effective when study sessions are spread out over time rather than crammed.
+
+# What is interleaving?
+> Mixing different topics during practice instead of focusing on one skill at a time.
+
+# What is the forgetting curve?
+> Information is lost over time without review; spaced repetition can flatten this curve.
+
+# What is metacognition?
+> Thinking about your own thinking and learning processes to improve understanding.`,
+
+            vocabulary: `Term,Definition,Category
+Pomodoro Technique,A time management method using 25-minute work sessions,Productivity
+Feynman Technique,Explain concepts simply to identify gaps in understanding,Study Strategy
+Spaced Repetition,Review with increasing intervals based on performance,Memory
+Dual Coding,Combine visual and verbal information to enhance memory,Memory
+Desirable Difficulty,Some difficulty improves long-term learning,Learning Theory
+Elaborative Interrogation,Ask "why" questions to generate explanations,Comprehension`,
+
+            facts: `# The Immortal Jellyfish
+**Turritopsis dohrnii** can reverse its life cycle when stressed, transforming cells back to polyp form and starting life anew indefinitely.
+
+**Why it matters:** Scientists study these jellyfish to understand stem cells and cellular regeneration for medical applications.
+
+# Bananas Are Radioactive
+Bananas contain potassium-40, exposing you to 0.1 microsieverts per banana. You'd need 10 million at once for lethal radiation.
+
+**Why it matters:** Demonstrates that radiation is about dosage—we encounter small amounts daily from food and environment safely.
+
+# The Shortest War in History
+The Anglo-Zanzibar War of 1896 lasted 38-45 minutes. British forces opened fire after an ultimatum expired; the Sultan surrendered within the hour.
+
+**Why it matters:** Illustrates colonial power imbalances and how technological disparity leads to rapid conflict resolution.
+
+# The First Computer Bug
+In 1947, Grace Hopper found a moth in a computer relay. She taped it in the logbook: "First actual case of bug being found."
+
+**Why it matters:** Software bugs cost billions annually; the term reminds us complex systems inevitably have flaws requiring systematic fixes.`
+        };
+
+        const modeInfo = {
+            flashcards: {
+                title: 'Q&A Flashcards',
+                description: 'Use <code>#</code> for questions and <code>></code> for answers:',
+                example: `# What is active recall?
+> Active recall is a learning technique where you test yourself on material.
+
+# What is the spacing effect?
+> Learning is greater when studying is spread out over time.`
+            },
+            vocabulary: {
+                title: 'Vocabulary CSV',
+                description: 'Use CSV format with Term, Definition, Category columns:',
+                example: `Term,Definition,Category
+Pomodoro Technique,A time management method using 25-minute focused sessions,Productivity
+Feynman Technique,Explain concepts in simple terms to identify understanding gaps,Study Strategy
+Spaced Repetition,Review at increasing intervals based on recall success,Memory`
+            },
+            facts: {
+                title: 'Facts Collection',
+                description: 'Use markdown with <code>#</code> for fact titles and content blocks:',
+                example: `# The Immortal Jellyfish
+Turritopsis dohrnii can reverse its life cycle indefinitely when stressed.
+
+**Why it matters:** Scientists study these for stem cell and regeneration research.
+
+# Bananas Are Radioactive
+Bananas contain potassium-40, a radioactive isotope. One banana = 0.1 microsieverts.
+
+**Why it matters:** Demonstrates safe radiation exposure levels in everyday life.`
+            }
+        };
+
+        function setMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.querySelectorAll('.input-mode button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`mode-${mode}`).classList.add('active');
+            
+            // Update info panel
+            const info = modeInfo[mode];
+            formatInfo.innerHTML = `
+                <h3>Current Format: ${info.title}</h3>
+                <p>${info.description}</p>
+                <pre>${info.example}</pre>
+                <div class="example-grid">
+                    <button class="example-btn" onclick="loadExample('cognitive')">
+                        <strong>Cognitive Tools</strong>
+                        <small>Study techniques and learning concepts</small>
+                    </button>
+                    <button class="example-btn" onclick="loadExample('vocabulary')">
+                        <strong>Vocabulary</strong>
+                        <small>Learning terminology with definitions</small>
+                    </button>
+                    <button class="example-btn" onclick="loadExample('facts')">
+                        <strong>Interesting Facts</strong>
+                        <small>Science, history, and culture facts</small>
+                    </button>
+                </div>
+            `;
+            
+            currentModeEl.textContent = info.title;
+            updatePreview();
+        }
+
+        function parseFlashcards(markdown) {
+            const lines = markdown.split('\n');
+            const cards = [];
+            let currentQuestion = null;
+            let currentAnswer = [];
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                
+                if (trimmed.startsWith('# ')) {
+                    if (currentQuestion && currentAnswer.length > 0) {
+                        cards.push({
+                            front: currentQuestion,
+                            back: currentAnswer.join('\n'),
+                            tags: 'flashcard'
+                        });
+                    }
+                    currentQuestion = trimmed.substring(2).trim();
+                    currentAnswer = [];
+                } else if (trimmed.startsWith('> ')) {
+                    currentAnswer.push(trimmed.substring(2).trim());
+                }
+            }
+
+            if (currentQuestion && currentAnswer.length > 0) {
+                cards.push({
+                    front: currentQuestion,
+                    back: currentAnswer.join('\n'),
+                    tags: 'flashcard'
+                });
+            }
+
+            return cards;
+        }
+
+        function parseVocabulary(csvText) {
+            const lines = csvText.trim().split('\n');
+            if (lines.length < 2) return [];
+
+            const headers = lines[0].split(',').map(h => h.trim());
+            const cards = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',');
+                if (values.length >= 2) {
+                    const term = values[0].trim();
+                    const definition = values[1].trim();
+                    const category = values[2] ? values[2].trim() : '';
+                    
+                    cards.push({
+                        front: `What is ${term}?`,
+                        back: `${definition}${category ? ` (${category})` : ''}`,
+                        tags: `vocabulary${category ? ',' + category.toLowerCase() : ''}`
+                    });
+                }
+            }
+
+            return cards;
+        }
+
+        function parseFacts(markdown) {
+            const lines = markdown.split('\n');
+            const cards = [];
+            let currentTitle = null;
+            let currentContent = [];
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                
+                if (trimmed.startsWith('# ')) {
+                    if (currentTitle && currentContent.length > 0) {
+                        const content = currentContent.join(' ');
+                        const mainFact = content.split('**Why it matters:**')[0].trim();
+                        const whyMatters = content.includes('**Why it matters:**') 
+                            ? content.split('**Why it matters:**')[1].trim() 
+                            : '';
+                        
+                        cards.push({
+                            front: currentTitle,
+                            back: whyMatters 
+                                ? `${mainFact}\n\n<b>Why it matters:</b> ${whyMatters}`
+                                : mainFact,
+                            tags: 'fact'
+                        });
+                    }
+                    currentTitle = trimmed.substring(2).trim();
+                    currentContent = [];
+                } else if (trimmed && !trimmed.startsWith('---')) {
+                    currentContent.push(trimmed.replace(/\*\*/g, ''));
+                }
+            }
+
+            if (currentTitle && currentContent.length > 0) {
+                const content = currentContent.join(' ');
+                const mainFact = content.split('Why it matters:')[0].trim();
+                const whyMatters = content.includes('Why it matters:') 
+                    ? content.split('Why it matters:')[1].trim() 
+                    : '';
+                
+                cards.push({
+                    front: currentTitle,
+                    back: whyMatters 
+                        ? `${mainFact}\n\n<b>Why it matters:</b> ${whyMatters}`
+                        : mainFact,
+                    tags: 'fact'
+                });
+            }
+
+            return cards;
+        }
+
+        function parseData(data) {
+            switch (currentMode) {
+                case 'flashcards':
+                    return parseFlashcards(data);
+                case 'vocabulary':
+                    return parseVocabulary(data);
+                case 'facts':
+                    return parseFacts(data);
+                default:
+                    return [];
+            }
+        }
+
+        function escapeCSV(text) {
+            if (text.includes(',') || text.includes('"') || text.includes('\n')) {
+                return '"' + text.replace(/"/g, '""') + '"';
+            }
+            return text;
+        }
+
+        function generateCSV(cards) {
+            const header = 'Front,Back,Tags';
+            const rows = cards.map(card => {
+                return `${escapeCSV(card.front)},${escapeCSV(card.back)},${escapeCSV(card.tags)}`;
+            });
+            return [header, ...rows].join('\n');
+        }
+
+        function updatePreview() {
+            const data = input.value.trim();
+            errorEl.classList.remove('visible');
+
+            if (!data) {
+                previewBody.innerHTML = `
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #555; padding: 40px;">
+                            Enter data to see preview
+                        </td>
+                    </tr>
+                `;
+                cardCountEl.textContent = '0';
+                itemCountEl.textContent = '0';
+                currentCSV = '';
+                cards = [];
+                return;
+            }
+
+            cards = parseData(data);
+
+            if (cards.length === 0) {
+                previewBody.innerHTML = `
+                    <tr>
+                        <td colspan="3" style="text-align: center; color: #ef4444; padding: 40px;">
+                            No valid cards found. Check your format matches the selected mode.
+                        </td>
+                    </tr>
+                `;
+            } else {
+                previewBody.innerHTML = cards.map(card => `
+                    <tr>
+                        <td title="${card.front.replace(/"/g, '&quot;')}">${card.front}</td>
+                        <td title="${card.back.replace(/"/g, '&quot;')}">${card.back.substring(0, 60)}${card.back.length > 60 ? '...' : ''}</td>
+                        <td>${card.tags || '-'}</td>
+                    </tr>
+                `).join('');
+            }
+
+            cardCountEl.textContent = cards.length;
+            
+            // Count data items based on mode
+            let itemCount = 0;
+            if (currentMode === 'vocabulary') {
+                itemCount = data.split('\n').length - 1; // minus header
+            } else {
+                itemCount = (data.match(/^# /gm) || []).length;
+            }
+            itemCountEl.textContent = Math.max(0, itemCount);
+
+            currentCSV = generateCSV(cards);
+        }
+
+        function loadExample(type) {
+            if (type === 'cognitive') {
+                setMode('flashcards');
+            } else if (type === 'vocabulary') {
+                setMode('vocabulary');
+            } else if (type === 'facts') {
+                setMode('facts');
+            }
+            input.value = examples[type];
+            updatePreview();
+        }
+
+        function clearInput() {
+            input.value = '';
+            updatePreview();
+        }
+
+        function copyCSV() {
+            if (!currentCSV) return;
+            navigator.clipboard.writeText(currentCSV).then(() => {
+                const btn = document.querySelector('button[onclick="copyCSV()"]');
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = original, 1500);
+            });
+        }
+
+        function downloadCSV() {
+            if (!currentCSV || cards.length === 0) {
+                errorEl.textContent = 'No cards to download. Please add data first.';
+                errorEl.classList.add('visible');
+                return;
+            }
+
+            const blob = new Blob([currentCSV], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `anki-${currentMode}-${cards.length}-${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        input.addEventListener('input', updatePreview);
+
+        // Initialize
+        input.value = examples.cognitive;
+        updatePreview();
+    </script>
+</body>
+</html>
