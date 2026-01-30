@@ -1,4 +1,4 @@
-name: Deploy Hugo to Namecheap via SFTP
+name: Deploy Hugo to GitHub Pages
 
 on:
   push:
@@ -6,12 +6,20 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
@@ -23,16 +31,21 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Build site
-        run: hugo --minify --baseURL 'https://brainium.ai/'
+      - name: Build
+        run: hugo --minify --baseURL "https://brainium.ai/"
 
-      - name: Deploy to Namecheap via SFTP
-        uses: milanmk/actions-file-deployer@master
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          remote-protocol: "sftp"
-          remote-host: ${{ secrets.SFTP_SERVER }}
-          remote-port: 21098
-          remote-user: ${{ secrets.SFTP_USERNAME }}
-          remote-password: ${{ secrets.SFTP_PASSWORD }}
-          local-path: "./public/"
-          remote-path: "./public_html/"
+          path: ./public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
