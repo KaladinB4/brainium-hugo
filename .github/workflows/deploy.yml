@@ -1,0 +1,38 @@
+name: Deploy Hugo to Namecheap via SFTP
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build site
+        run: hugo --minify --baseURL 'https://brainium.ai/'
+
+      - name: Deploy to Namecheap via SFTP
+        uses: milanmk/actions-file-deployer@master
+        with:
+          remote-protocol: "sftp"
+          remote-host: ${{ secrets.SFTP_SERVER }}
+          remote-port: 21098
+          remote-user: ${{ secrets.SFTP_USERNAME }}
+          remote-password: ${{ secrets.SFTP_PASSWORD }}
+          local-path: "./public/"
+          remote-path: "./public_html/"
