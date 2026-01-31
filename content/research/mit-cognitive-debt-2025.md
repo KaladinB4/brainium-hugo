@@ -214,6 +214,8 @@ Notably, participants who started with Brain-only and switched to LLM in Session
 **Further Reading**:
 - [Full paper (arXiv)](https://arxiv.org/abs/2506.08872)
 - [MIT Media Lab project page](https://www.media.mit.edu/projects/your-brain-on-chatgpt/overview/)
+- [Companion essay: AI Makes Writing Easier—But Are We Thinking Less?](/essays/ai-makes-writing-easier/) — Personal exploration of the cognitive debt problem
+- [Framework: Think First Protocol](/frameworks/think-first-protocol/) — Practical workflow to avoid cognitive debt accumulation
 - [Related: GPS and spatial memory study](/essays/cognitive-offloading-research/)
 - [Related: Anthropic coding study](/research/anthropic-coding-skills-2026/)
 

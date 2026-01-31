@@ -63,9 +63,11 @@ The errors are the point. Retrieval failures signal weak encoding. Each failed r
 
 **Fear of failure.** Students avoid retrieval practice because it feels bad to not know. They stick to techniques that feel comfortable—re-reading, highlighting, organizing. The discomfort is diagnostic: if retrieval is hard, learning is happening. If it's easy, you're wasting time.
 
-## Integration with Spaced Repetition and AI-Assisted Learning
+## Integration with Spaced Repetition, AI-Assisted Learning, and Retrieval Practice
 
 Active recall and spaced repetition form the gold standard of learning. Spaced repetition provides the [schedule](/cognitive-tools/spaced-repetition/)—when to review. Active recall provides the method—how to review.
+
+For a comprehensive implementation guide that extends these principles to AI-assisted workflows, see the [Retrieval Practice Guide](/frameworks/retrieval-practice-guide/). It provides detailed protocols for pre-AI retrieval, post-AI summarization, and integrating retrieval practice with modern learning tools.
 
 Anki flashcards are structured cued recall. The prompt is the cue; the answer requires retrieval. This is why Anki works: not because of the app, but because it enforces active recall at optimal intervals. A spaced active recall system beats either technique alone.
 
@@ -121,6 +123,7 @@ Output: `Q: What type of function describes Ebbinghaus's forgetting curve? A: Ex
 ---
 
 **Related:** 
+- [Retrieval Practice Guide](/frameworks/retrieval-practice-guide/) — Comprehensive implementation guide for AI-assisted workflows
 - [Spaced Repetition](/cognitive-tools/spaced-repetition/) — The schedule for your active recall practice
 - [Interleaving](/cognitive-tools/interleaving/) — Mixing problem types to maximize active recall benefits
 - [Deep Work](/cognitive-tools/deep-work/) — Protecting attention for effective active recall

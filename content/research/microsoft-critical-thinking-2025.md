@@ -102,6 +102,7 @@ The problem: Most users drift toward Over-Reliant without realizing it. Confiden
 ---
 
 ## Four Tactics
+See the full Confidence Calibration Protocol with implementation templates and field-tested results →
 
 ### Tactic 1: The Confidence Check
 

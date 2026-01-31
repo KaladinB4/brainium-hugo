@@ -17,5 +17,88 @@
     <div class="article-body">
       {{ .Content }}
     </div>
+    {{ with .Params.tags }}
+    <footer class="article-footer">
+      <div class="article-tags">
+        <span class="tags-label">topics:</span>
+        {{ range . }}
+        <a href="{{ "/tags/" | relURL }}{{ . | urlize }}" class="tag">{{ . }}</a>
+        {{ end }}
+      </div>
+    </footer>
+    {{ end }}
   </article>
+  {{ with .Params.tags }}
+  {{ $currentPage := $.Page }}
+  {{ $relatedPages := slice }}
+  {{ range . }}
+    {{ $tag := . }}
+    {{ $tagPages := (index $.Site.Taxonomies.tags (urlize $tag)).Pages }}
+    {{ range $tagPages }}
+      {{ if and (ne .RelPermalink $currentPage.RelPermalink) (not (in $relatedPages .)) }}
+        {{ $relatedPages = $relatedPages | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ if gt (len $relatedPages) 0 }}
+  <section class="related-articles" aria-labelledby="related-heading">
+    <h2 id="related-heading">more on this topic</h2>
+    <ul class="related-list">
+      {{ range first 3 $relatedPages }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ with .Params.description }}<span class="related-desc">{{ . }}</span>{{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+  {{ end }}
+  
+  {{ $section := .Section }}
+  <section class="next-steps" aria-labelledby="next-steps-heading">
+    <h2 id="next-steps-heading">what to explore next</h2>
+    {{ if eq $section "essays" }}
+    <p>This essay identified a problem. Here's how to solve it:</p>
+    <ul>
+      <li><strong>See the research:</strong> Read the study this essay is based on — deeper evidence and methodology</li>
+      <li><strong>Get the protocol:</strong> Browse our cognitive tools for actionable frameworks</li>
+      <li><strong>See it work:</strong> Check field notes for real-world experiments and results</li>
+    </ul>
+    {{ else if eq $section "research" }}
+    <p>You've seen the evidence. Now put it into practice:</p>
+    <ul>
+      <li><strong>Get the framework:</strong> Apply the tactics from this research — cognitive tools section</li>
+      <li><strong>See it tested:</strong> Field notes show real experiments with honest results</li>
+      <li><strong>Understand the pattern:</strong> Read the synthesis essay for broader context</li>
+    </ul>
+    {{ else if eq $section "cognitive-tools" }}
+    <p>You have a framework. Now see it validated:</p>
+    <ul>
+      <li><strong>See it in action:</strong> Field notes document real experiments with this framework</li>
+      <li><strong>Understand the science:</strong> Research articles explain why this works</li>
+      <li><strong>Learn the philosophy:</strong> Core principles behind the Three Modes approach</li>
+    </ul>
+    {{ else if eq $section "field-notes" }}
+    <p>This was an experiment. What to try next:</p>
+    <ul>
+      <li><strong>The framework behind this:</strong> Cognitive tools for structured implementation</li>
+      <li><strong>Related research:</strong> Studies that informed this experiment</li>
+      <li><strong>Next experiment:</strong> Try another framework — follow our ongoing tests</li>
+    </ul>
+    {{ else }}
+    <p>Continue exploring Brainium:</p>
+    <ul>
+      <li><strong>Research:</strong> Evidence on AI's impact on cognition and learning</li>
+      <li><strong>Essays:</strong> Synthesis of research into broader patterns</li>
+      <li><strong>Cognitive Tools:</strong> Actionable frameworks you can apply today</li>
+    </ul>
+    {{ end }}
+    <div class="next-steps-links">
+      <a href="{{ "research/" | relURL }}">[research]</a>
+      <a href="{{ "essays/" | relURL }}">[essays]</a>
+      <a href="{{ "cognitive-tools/" | relURL }}">[cognitive-tools]</a>
+      <a href="{{ "field-notes/" | relURL }}">[field-notes]</a>
+    </div>
+  </section>
 {{ end }}

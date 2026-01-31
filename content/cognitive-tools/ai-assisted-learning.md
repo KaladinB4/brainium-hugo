@@ -12,6 +12,10 @@ related_research:
 
 AI coding tools are now table stakes. But recent research shows a 17% reduction in skill acquisition when used passively. The Active Prompting Protocol extracts the tactics used by high-performing developers in Anthropic's study.
 
+**Why this matters**: [My debugging skills were fading without me realizing it](/essays/why-debugging-skills-are-disappearing/). This protocol is how I'm recovering them.
+
+**Does it work?** [I tested it for 30 days learning Rust async patterns](/field-notes/30-days-active-prompting-coding/). The results—including the failures—are documented honestly.
+
 ## Core Principle
 
 **Never request code without requesting understanding.**

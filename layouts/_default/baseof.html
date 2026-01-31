@@ -34,6 +34,7 @@
       <a href="{{ "essays/" | relURL }}">[essays]</a>
       <a href="{{ "research/" | relURL }}">[research]</a>
       <a href="{{ "cognitive-tools/" | relURL }}">[cognitive-tools]</a>
+      <a href="{{ "field-notes/" | relURL }}">[field-notes]</a>
       <a href="{{ "about/" | relURL }}">[about]</a>
       <a href="{{ "index.xml" | relURL }}">[rss]</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle between dark and light theme">[light]</button>
@@ -46,6 +47,8 @@
     <span>{{ now.Format "2006" }} {{ .Site.Title }}</span>
     <span class="footer-sep">·</span>
     <a href="{{ "index.xml" | relURL }}">rss</a>
+    <span class="footer-sep">·</span>
+    <a href="{{ "tags/" | relURL }}">tags</a>
   </footer>
   <script src="{{ "js/theme.js" | relURL }}"></script>
 </body>

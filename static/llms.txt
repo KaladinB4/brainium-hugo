@@ -1,0 +1,42 @@
+# Brainium
+
+> Research-backed guidance for thinking with AI. We translate academic research on AI's impact on cognition into practical frameworks for knowledge workers. Our mission: Help people use AI as cognitive leverage without losing thinking skills.
+
+Key principle: Use AI to externalize effort, not responsibility for thinking. We focus on Mode 3 (Amplification)—you think first, AI sharpens.
+
+## Core Research
+
+- [MIT Cognitive Debt Study](/research/mit-cognitive-debt-2025/): EEG evidence showing reduced neural connectivity when starting with AI assistance vs. brain-first writing. Brain-only writers showed 79 neural connections vs. 42 for LLM-assisted (p=0.0002).
+- [Anthropic Coding Skills Study](/research/anthropic-coding-skills-2026/): RCT showing 17% skill degradation with AI assistance, highest-performing developers used zero code generation requests and focused on conceptual understanding.
+- [Microsoft Critical Thinking Survey](/research/microsoft-critical-thinking-2025/): Survey of 319 knowledge workers—40% of AI tasks involved no critical thinking, driven by confidence mismatch between trust in AI vs. self.
+
+## Practical Frameworks
+
+- [Think First Protocol](/frameworks/think-first-protocol/): Three-phase workflow—independent thinking → AI refinement → synthesis. Based on MIT findings that starting with AI creates persistent cognitive debt.
+- [Confidence Calibration Protocol](/frameworks/confidence-calibration-protocol/): Four-tactic system to maintain critical thinking through confidence tracking and task-type matching.
+- [Active Prompting Protocol](/cognitive-tools/ai-assisted-learning/): Tactical approach for coding without skill degradation. Never request code without requesting understanding.
+
+## Field Validation
+
+- [30 Days Brain-First Writing](/field-notes/brain-first-writing-experiment/): Testing MIT's cognitive debt protocol—ownership increased from 4/10 to 8/10, memory accuracy from 40% to 85%.
+- [2 Weeks Confidence Calibration](/field-notes/confidence-calibration-experiment/): 47 AI tasks logged, 3 significant errors caught that would have been missed, confidence gap narrowed over time.
+
+## Foundation Essays
+
+- [Why You Trust AI More Than Yourself](/essays/why-you-trust-ai-more-than-yourself/): The Confidence Paradox—critical thinking is becoming conditional on confidence calibration, not disappearing.
+- [AI Makes Writing Easier—But Are We Thinking Less?](/essays/ai-makes-writing-easier/): How AI assistance changes the writing process and what that means for cognitive engagement.
+- [Cognitive Offloading: 40 Years of Research](/essays/cognitive-offloading-research/): From calculators to GPS to AI—the consistent pattern of immediate gains vs. long-term skill costs.
+
+## Philosophy & Standards
+
+- [Core Philosophy](/about/philosophy/): Three Modes framework—Replacement (❌), Convenience (⚠️), Amplification (✅). Brainium only publishes Mode 3 content.
+- [Content Standards](/docs/content-standards.md): Editorial requirements including Philosophy Alignment Check and tone guidelines (curious, not alarmist).
+
+## Optional
+
+- [Content Marketing Funnel](/docs/content-funnel.md): How TOFU → MOFU → BOFU → Retention content connects to form complete learning journeys.
+- [All Research](/research/): Complete research article index with methodology and effect sizes.
+- [All Essays](/essays/): Synthesis and opinion pieces connecting research to practice.
+- [All Frameworks](/frameworks/): Actionable workflows for maintaining cognitive engagement.
+- [All Field Notes](/field-notes/): Real experiments validating frameworks with honest results.
+- [All Cognitive Tools](/cognitive-tools/): Domain-agnostic techniques (active recall, spaced repetition, deep work).

@@ -11,8 +11,11 @@ research_papers:
   - "Clark & Chalmers (1998). The Extended Mind. Analysis"
 ---
 
-## Problem Statement
+**Read the personal essay on why debugging skills matter →** [/essays/why-debugging-skills-are-disappearing/](/essays/why-debugging-skills-are-disappearing/)
 
+---
+
+## Problem Statement
 **Trigger**: AI coding assistants are now standard. Most developers use them daily.
 
 **Stakes**: Junior developers need debugging and conceptual skills to oversee AI-generated code in production.
@@ -160,7 +163,7 @@ What are the common anti-patterns?"
 ## Field Notes: Initial Observations
 
 **Context**: Applying Conceptual Inquiry mode to learning Rust async
-**Duration**: 3 sessions over 1 week
+**Duration**: 3 sessions over 1 week (extended to 30 days in follow-up)
 **Setup**: 
 - Session 1: Asked AI only conceptual questions (what is Future, how does polling work)
 - Self-coded all examples
@@ -170,6 +173,8 @@ What are the common anti-patterns?"
 - Slower initial progress vs copy-paste approach (expected)
 - By session 3, debugging own errors without AI assistance
 - Able to explain async executor internals to colleague (retention signal)
+
+**Extended Testing**: See the [30-day Active Prompting experiment](/field-notes/30-days-active-prompting-coding/) for full results including the tipping point at Day 18 and honest limitations.
 
 **Deviation from Framework**:
 - Found hybrid mode useful for complex ownership errors
