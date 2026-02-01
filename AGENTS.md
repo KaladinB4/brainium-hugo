@@ -4,6 +4,33 @@ Operational context for AI agents working on Brainium content and development.
 
 ---
 
+## Project Structure
+
+**Git Repository Location:** `~/brainium/brainium.ai/` (this is the ONLY git repo)
+
+```
+brainium.ai/
+├── content/              # PUBLISHED content (tracked by git)
+│   ├── research/         # Deep dive articles
+│   ├── essays/           # Synthesis + opinion pieces
+│   ├── cognitive-tools/  # Actionable frameworks
+│   ├── field-notes/      # Experiments and observations
+│   ├── guides/           # Implementation guides
+│   └── about/            # About pages
+├── docs/                 # Documentation (tracked by git)
+├── planning/             # Working docs, drafts, deliverables (GITIGNORED)
+├── workspace/            # Scratch files, temporary work (GITIGNORED)
+└── [hugo config files]   # Hugo site configuration
+```
+
+**IMPORTANT:** 
+- Only files in `content/` are published to the site
+- `planning/` contains work-in-progress and should never be committed
+- `workspace/` is for temporary scratch work
+- All content creation/editing happens inside `brainium.ai/` — the parent `~/brainium/` directory is NOT a git repo
+
+---
+
 ## Project Overview
 
 **Brainium** (brainium.ai) is a research translation site focused on "Research-backed guidance for thinking with AI." It bridges academic research on AI's impact on cognition with practical frameworks for knowledge workers.

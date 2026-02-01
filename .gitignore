@@ -34,3 +34,9 @@ yarn-error.log*
 # Backup files
 *.bak
 *.backup
+
+# Planning and working directories (not for git)
+/planning/
+/workspace/
+*.draft.md
+*.wip.md

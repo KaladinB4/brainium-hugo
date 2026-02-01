@@ -60,7 +60,7 @@ If any answer is no, the content does not belong on Brainium.
 - **Mix multiple papers** into coherent narrative
 - **End with open questions**
 - **Length**: 1500-2500 words
-- **Example**: *Cognitive Offloading: From Calculators to AI*
+- **Example**: *[Cognitive Offloading: From Calculators to AI](/essays/cognitive-offloading-research/)*
 
 ### RESEARCH: Deep Dive on Single Paper
 

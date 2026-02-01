@@ -1,6 +1,7 @@
----
-title: "Brainium Core Philosophy"
-description: "Our stance on AI, cognition, and skill development."
+# Brainium Core Philosophy (Internal Reference)
+
+Internal documentation of Brainium's editorial philosophy. Published version lives at `/about/philosophy/`.
+
 ---
 
 ## The Problem We Care About
@@ -83,7 +84,7 @@ You think first. AI sharpens.
 
 **Outcome**: Faster learning and deeper mastery.
 
-Everything Brainium publishes is optimized for Mode 3.
+**Everything Brainium publishes is optimized for Mode 3.**
 
 ---
 
@@ -129,6 +130,22 @@ If the answer is no, it doesn't belong on Brainium.
 
 ---
 
+## Content Funnel Alignment
+
+Our philosophy maps to the content marketing funnel:
+
+| Mode | Funnel Stage | Content Type | Purpose |
+|------|--------------|--------------|---------|
+| ❌ Replacement | N/A | Not published | Brainium doesn't teach this |
+| ⚠️ Convenience | TOFU (awareness) | Essays | Identify the problem |
+| ✅ Amplification | MOFU/BOFU | Research + Tools | Provide the solution |
+
+The progression: **Problem awareness → Research evidence → Practical implementation**
+
+Formula: `"LLM messes up X" → "Studies on X" → "Increase your X with Y"`
+
+---
+
 ## The Long-Term Vision
 
 AI will get better. The cost of not thinking will get higher.
@@ -146,20 +163,22 @@ Brainium exists for those people.
 
 ---
 
-## Research-Anchored Writing
-
-Every claim on Brainium traces back to evidence:
+## Research Sources
 
 - **[Anthropic coding skills study](/research/anthropic-coding-skills-2026/)** (2026): AI assistance reduces mastery scores by 17% for certain interaction patterns
 - **[MIT cognitive debt study](/research/mit-cognitive-debt-2025/)** (2025): EEG research showing reduced neural connectivity with LLM use
-- **[Cognitive offloading research synthesis](/essays/cognitive-offloading-research/)** (Wegner, Clark & Chalmers, Sweller): 40 years of research on tool-induced skill degradation
-- **Cognitive load theory**: Working memory constraints explain why we offload—and why it matters
-
-We read the papers so you don't have to—but every tactic, framework, and recommendation links back to its source.
+- **Cognitive offloading research** (Wegner, Clark & Chalmers, Sweller): 40 years of research on tool-induced skill degradation
 
 ---
 
 ## Related
 
-- [Research Articles](/research/)
-- [Frameworks](/frameworks/)
+- [Published Philosophy](/about/philosophy/) — External-facing version
+- [Content Funnel](/docs/content-funnel.md) — Editorial framework
+- [Content Standards](/docs/content-standards.md) — Quality requirements
+- [Agent Delegation](/docs/agent-delegation.md) — AI workflow patterns
+
+---
+
+*Last updated: January 31, 2026*
+*Source: Migrated from planning/conversation.md and planning/discussions.md*
