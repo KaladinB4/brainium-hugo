@@ -1,6 +1,11 @@
-# Brainium Content Templates
+---
+title: "Content Templates"
+description: "Standardized templates for consistent content creation across all funnel stages."
+date: 2026-01-31
+type: "docs"
+---
 
-Standardized templates for consistent content creation across all funnel stages.
+# Brainium Content Templates
 
 ---
 
@@ -418,6 +423,6 @@ tags: ["field-notes", "framework", "experiment"]
 
 ## Related
 
-- [Content Standards](/docs/content-standards.md) — Quality and tone requirements
-- [Content Funnel](/docs/content-funnel.md) — Strategic framework
+- [Content Standards](/docs/content-standards/) — Quality and tone requirements
+- [Content Funnel](/docs/content-funnel/) — Strategic framework
 - [Research Article Template](/content/research/_article-template.md) — MOFU example

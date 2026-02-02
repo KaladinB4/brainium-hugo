@@ -136,8 +136,10 @@ The research suggests you will.
 
 **The Research:**
 - [Anthropic's Coding Study: When AI Helps vs When It Hurts](/research/anthropic-coding-skills-2026/) — The 17% skill reduction finding and the three interaction patterns
+- [Your Brain on ChatGPT](/research/brain-on-chatgpt/) — EEG evidence of how AI changes neural engagement
 
-**The Pattern:**
+**The Mechanisms:**
+- [Why Debugging Skills Decay](/essays/debugging-skill-decay/) — The cognitive science behind skill atrophy with AI assistance
 - [Cognitive Offloading: The 40-Year Pattern Behind AI Skill Decay](/essays/cognitive-offloading-research/) — From calculators to GPS to AI, why tools change cognition
 
 **The Solution:**

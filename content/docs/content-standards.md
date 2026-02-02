@@ -1,6 +1,11 @@
-# Brainium Content Standards
+---
+title: "Content Standards"
+description: "Documentation for editors and contributors. Every article must pass these gates before publication."
+date: 2026-01-31
+type: "docs"
+---
 
-Documentation for editors and contributors. Every article must pass these gates before publication.
+# Brainium Content Standards
 
 ---
 

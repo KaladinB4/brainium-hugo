@@ -1,4 +1,5 @@
 ---
+
 title: "Field Notes"
 description: "Real experiments, case studies, and observations from learning with AI."
 ---
@@ -21,6 +22,3 @@ Field Notes document real applications of Brainium frameworks. These are honest 
 ---
 
 Field Notes validate the research-backed frameworks with real-world experiments. They also serve as the bridge from theory (Research) to practice (Cognitive Tools) to proof (Field Notes).
-
-Read more about the [Content Marketing Funnel](/docs/content-funnel.md) to understand how these pieces connect.
-

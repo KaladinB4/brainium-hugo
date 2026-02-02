@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Focus on being friendly to AI crawlers while pointing to the llms.txt
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+
+User-agent: Claude-Bot
+Allow: /
+Allow: /llms.txt
+
+User-agent: OAI-SearchBot
+Allow: /
+
+Sitemap: https://brainium.ai/sitemap.xml

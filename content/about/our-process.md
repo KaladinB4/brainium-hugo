@@ -102,5 +102,3 @@ The goal isn't perfection—it's transparency. We believe readers deserve to kno
 ## Related
 
 - [Brainium Philosophy](/about/philosophy/) — Our core principles and the Three Modes framework
-- [Content Standards](/docs/content-standards.md) — Editorial requirements for all content
-- [Content Templates](/docs/content-templates.md) — Standardized formats we follow

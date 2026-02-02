@@ -216,7 +216,7 @@ The goal isn't to avoid AI tools. It's to use them in ways that amplify rather t
 **Related Brainium Articles:**
 - [MIT Cognitive Debt Study](/research/mit-cognitive-debt-2025/) — EEG evidence of reduced neural connectivity with LLM use
 - [Anthropic Coding Skills Study](/research/anthropic-coding-skills-2026/) — 17% skill reduction with AI delegation
-- [Active Prompting Protocol](/frameworks/active-prompting-protocol/) — Practical tactics for Amplification Mode
+- [Active Prompting Protocol](/cognitive-tools/ai-assisted-learning/) — Practical tactics for Amplification Mode
 - [Brainium Philosophy](/about/philosophy/) — The Three Modes framework and Brainium Principle
 
 ---

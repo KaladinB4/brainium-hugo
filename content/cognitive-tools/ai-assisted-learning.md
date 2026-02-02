@@ -172,8 +172,9 @@ Then: Read docs, try implementation, return with specific questions.
 ## Further Reading
 
 - [Anthropic coding skills study](/research/anthropic-coding-skills-2026/) — Research foundation
-- [MIT cognitive debt study](/research/brain-on-chatgpt/) — Essay writing domain
-- [Debugging skill retention](/essays/debugging-skill-decay/) — Why errors matter
+- [MIT cognitive debt study](/research/mit-cognitive-debt-2025/) — Cognitive debt framework for writing
+- [Your Brain on ChatGPT](/research/brain-on-chatgpt/) — EEG evidence of neural changes with AI use
+- [Why debugging skills decay](/essays/debugging-skill-decay/) — The cognitive mechanisms of skill atrophy
 
 ---
 

@@ -1,6 +1,11 @@
-# Brainium Content Marketing Funnel
+---
+title: "Content Marketing Funnel"
+description: "Strategic editorial framework for mapping content to the classic marketing funnel."
+date: 2026-01-31
+type: "docs"
+---
 
-Strategic editorial framework for mapping content to the classic marketing funnel while maintaining Brainium's research-backed positioning.
+# Brainium Content Marketing Funnel
 
 ---
 
@@ -152,6 +157,6 @@ Before publishing any piece:
 
 ## Related Documentation
 
-- [Content Standards](/docs/content-standards.md) - Quality and tone requirements
+- [Content Standards](/docs/content-standards/) - Quality and tone requirements
 - [Article Template](/research/article-template/) - MOFU structure
 - [Core Philosophy](/about/philosophy/) - Three Modes framework

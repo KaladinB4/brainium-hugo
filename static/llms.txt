@@ -30,11 +30,11 @@ Key principle: Use AI to externalize effort, not responsibility for thinking. We
 ## Philosophy & Standards
 
 - [Core Philosophy](/about/philosophy/): Three Modes framework—Replacement (❌), Convenience (⚠️), Amplification (✅). Brainium only publishes Mode 3 content.
-- [Content Standards](/docs/content-standards.md): Editorial requirements including Philosophy Alignment Check and tone guidelines (curious, not alarmist).
+- [Content Standards](/docs/content-standards/): Editorial requirements including Philosophy Alignment Check and tone guidelines (curious, not alarmist).
 
 ## Optional
 
-- [Content Marketing Funnel](/docs/content-funnel.md): How TOFU → MOFU → BOFU → Retention content connects to form complete learning journeys.
+- [Content Marketing Funnel](/docs/content-funnel/): How TOFU → MOFU → BOFU → Retention content connects to form complete learning journeys.
 - [All Research](/research/): Complete research article index with methodology and effect sizes.
 - [All Essays](/essays/): Synthesis and opinion pieces connecting research to practice.
 - [All Frameworks](/frameworks/): Actionable workflows for maintaining cognitive engagement.

@@ -238,7 +238,7 @@ Both tools can support either pattern. The difference is in which design choices
 - [MIT cognitive debt study: EEG evidence from LLM-assisted writing](/research/mit-cognitive-debt-2025/)
 - [Anthropic coding study: How AI assistance affects skill formation](/research/anthropic-coding-skills-2026/)
 - [Cognitive offloading: 40-year research synthesis](/essays/cognitive-offloading-research/)
-- [Active Prompting Protocol: Tactical framework for productive AI use](/frameworks/active-prompting-protocol/)
+- [Active Prompting Protocol: Tactical framework for productive AI use](/cognitive-tools/ai-assisted-learning/)
 
 **Open questions:**
 - Do these Socratic modes prevent cognitive debt or just delay it?

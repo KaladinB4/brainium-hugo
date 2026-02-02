@@ -1,6 +1,11 @@
-# Brainium Core Philosophy (Internal Reference)
+---
+title: "Core Philosophy (Internal)"
+description: "Internal documentation of Brainium's editorial philosophy."
+date: 2026-01-31
+type: "docs"
+---
 
-Internal documentation of Brainium's editorial philosophy. Published version lives at `/about/philosophy/`.
+# Brainium Core Philosophy (Internal Reference)
 
 ---
 
@@ -174,9 +179,9 @@ Brainium exists for those people.
 ## Related
 
 - [Published Philosophy](/about/philosophy/) — External-facing version
-- [Content Funnel](/docs/content-funnel.md) — Editorial framework
-- [Content Standards](/docs/content-standards.md) — Quality requirements
-- [Agent Delegation](/docs/agent-delegation.md) — AI workflow patterns
+- [Content Funnel](/docs/content-funnel/) — Editorial framework
+- [Content Standards](/docs/content-standards/) — Quality requirements
+- [Agent Delegation](/docs/agent-delegation/) — AI workflow patterns
 
 ---
 

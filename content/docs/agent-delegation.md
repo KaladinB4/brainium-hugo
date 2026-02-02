@@ -1,6 +1,11 @@
-# Agent Delegation Framework
+---
+title: "Agent Delegation Framework"
+description: "Workflow patterns for using AI agents to scale content production."
+date: 2026-01-31
+type: "docs"
+---
 
-Workflow patterns for using AI agents to scale content production while maintaining human insight and quality control.
+# Agent Delegation Framework
 
 ---
 
@@ -109,5 +114,5 @@ When delegating tasks to agents:
 
 ## Related
 
-- [Content Funnel](/docs/content-funnel.md) — Editorial framework
-- [Content Standards](/docs/content-standards.md) — Quality requirements
+- [Content Funnel](/docs/content-funnel/) — Editorial framework
+- [Content Standards](/docs/content-standards/) — Quality requirements

@@ -40,3 +40,16 @@ yarn-error.log*
 /workspace/
 *.draft.md
 *.wip.md
+
+# Internal documentation and workflow files
+HANDOFF.md
+HANDOFF_ARCHIVE_*.md
+AGENTS.md
+CLAUDE.md
+
+# Local dev files
+.opencode/
+
+# Test results and reports
+/playwright-report/
+/test-results/

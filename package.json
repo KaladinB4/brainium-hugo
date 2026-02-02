@@ -1,5 +1,12 @@
 {
   "dependencies": {
     "playwright": "^1.58.1"
+  },
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:audit": "node audit-script.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.1"
   }
 }
