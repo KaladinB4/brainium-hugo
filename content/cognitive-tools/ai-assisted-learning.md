@@ -6,6 +6,8 @@ tags: ["cognitive-tools", "ai", "coding", "skill-retention", "learning"]
 related_research:
   - "Anthropic coding skills study (2026)"
   - "MIT cognitive debt study (2025)"
+aliases:
+  - /frameworks/active-prompting-protocol/
 ---
 
 ## The Problem
@@ -135,6 +137,123 @@ What are 2-3 common misconceptions?"
 
 Then: Read docs, try implementation, return with specific questions.
 
+---
+
+## Case Study: The Socratic Tutor Configuration
+
+**Context:** You're learning x86 assembly,Rust, or any complex technical topic. You want AI assistance, but you also need to build actual understanding—not just working code.
+
+**The Problem:** Default AI behavior drifts toward Mode 1 (Replacement). Ask "How do I loop through an array?" and you get 20 lines of complete implementation. You copy-paste, it works, you learn nothing.
+
+**The Solution:** Configure your AI with explicit constraints that force Mode 3 (Amplification) behavior.
+
+### The System Prompt Template
+
+Copy this into your first message when starting a new learning session:
+
+```
+You are a Socratic tutor, not a code generator. Follow these rules:
+
+EXPLAIN, DON'T IMPLEMENT:
+- Explain concepts when I'm confused
+- Point me to relevant documentation
+- Review code I've written and suggest improvements
+- Help debug by asking guiding questions
+- Explain error messages and what they mean
+- Suggest approaches at a high level
+- Explain memory layouts, register usage, or architecture
+
+CONSTRAINTS (Never violate these):
+- Never write complete functions or implementations
+- Never fill in TODO sections for me
+- Never refactor large portions of my code
+- Never provide solutions to assignments
+- Code examples must be 2-5 lines maximum
+- Use different variable names than my assignment
+- Always explain the "why," not just the "how"
+
+INTERACTION PATTERN:
+1. When I ask for help, first ask what I've tried
+2. Reference concepts I should know rather than giving direct answers
+3. Suggest next steps instead of implementing them
+4. Point out specific areas in my code for improvement
+5. If giving a code example, explain each line's purpose
+```
+
+### How This Maps to the Protocol
+
+| Phase | AI Behavior | Your Action |
+|-------|-------------|-------------|
+| **Phase 1: Conceptual Foundation** | Explains abstractions, tradeoffs, anti-patterns | You ask clarifying questions |
+| **Phase 2: Implementation** | Reviews your code, asks guiding questions | You write the code yourself |
+| **Phase 3: Verification** | Explains error messages, suggests debugging approaches | You self-diagnose before confirming |
+
+### Example: Good vs. Bad Interaction
+
+**Without constraints (Mode 1 - Replacement):**
+> **You:** How do I loop through an array in x86?
+> 
+> **AI:** Here's the implementation:
+> ```
+> mov rcx, 0
+> loop_start:
+>     mov rax, [array + rcx*8]
+>     ; ... 20 more lines
+> ```
+> 
+> **Result:** You have working code. You don't understand it.
+
+**With Socratic constraints (Mode 3 - Amplification):**
+> **You:** How do I loop through an array in x86?
+> 
+> **AI:** In x86, you'll use a counter register and conditional jumps. The pattern is:
+> - Initialize a counter (like `mov rcx, 0`)
+> - Use the counter to calculate memory offsets
+> - Increment the counter
+> - Compare against length and conditionally jump back
+> 
+> Look at the loops section in lecture 15. What have you tried so far?
+> 
+> **Result:** You know the pattern. You implement it yourself. You remember it.
+
+### Why This Works
+
+The Anthropic study found that high-performing developers used **zero code generation requests**. They focused on conceptual understanding, then implemented themselves.
+
+This system prompt forces that pattern. The AI literally cannot give you the answer—it's constrained to explanation only. You must generate the implementation yourself, which triggers the [retrieval practice](/cognitive-tools/active-recall/) that builds long-term skill.
+
+### Variations for Different Contexts
+
+**For Debugging:**
+```
+When I have an error:
+1. Ask me what I think caused it
+2. Explain what the error type generally means
+3. Suggest 2-3 diagnostic approaches
+4. Never provide the fix directly
+```
+
+**For Code Review:**
+```
+Review my code for:
+1. Correctness edge cases
+2. Maintainability issues
+3. Alternative approaches with tradeoffs
+
+For each issue, explain the principle, not the fix.
+```
+
+**For API Learning:**
+```
+When I ask about a function:
+1. Explain the mental model behind it
+2. List 2-3 common misconceptions
+3. Point me to official docs
+4. Never write the calling code for me
+```
+
+---
+
 ## Session Structure
 
 **30-Minute Learning Session:**
@@ -174,7 +293,7 @@ Then: Read docs, try implementation, return with specific questions.
 - [Anthropic coding skills study](/research/anthropic-coding-skills-2026/) — Research foundation
 - [MIT cognitive debt study](/research/mit-cognitive-debt-2025/) — Cognitive debt framework for writing
 - [Your Brain on ChatGPT](/research/brain-on-chatgpt/) — EEG evidence of neural changes with AI use
-- [Why debugging skills decay](/essays/debugging-skill-decay/) — The cognitive mechanisms of skill atrophy
+- [Why debugging skills decay](/essays/why-debugging-skills-are-disappearing/) — The cognitive mechanisms of skill atrophy
 
 ---
 

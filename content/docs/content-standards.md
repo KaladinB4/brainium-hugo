@@ -195,4 +195,4 @@ Before marking any article complete:
 ## Related
 
 - [Core Philosophy](/about/philosophy/)
-- [Article Template](/research/article-template/)
+- [Content Templates](/docs/content-templates/) — Article structure templates

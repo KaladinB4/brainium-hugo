@@ -20,7 +20,7 @@ Research articles provide deep dives into specific studies. Each article include
   - *Neuroscience deep dive:* [Your Brain on ChatGPT](/research/brain-on-chatgpt/) — Detailed analysis of EEG findings and neural mechanisms
 
 - **[Anthropic's Coding Study: When AI Helps vs When It Hurts](/research/anthropic-coding-skills-2026/)** — A randomized trial of 52 developers found AI assistance reduced mastery scores by 17%—but only for certain interaction patterns.
-  - *Skill decay analysis:* [Why Debugging Skills Decay](/essays/debugging-skill-decay/) — Cognitive mechanisms behind the 17% reduction
+  - *Skill decay analysis:* [Why Debugging Skills Decay](/essays/why-debugging-skills-are-disappearing/) — Cognitive mechanisms behind the 17% reduction
 
 - **[Microsoft's Critical Thinking Survey](/research/microsoft-critical-thinking-2025/)** — A survey of 319 knowledge workers reveals that critical thinking engagement depends on confidence calibration between user and AI.
 

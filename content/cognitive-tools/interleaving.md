@@ -22,7 +22,7 @@ This is **blocked practice**: clustering similar problems together. It creates t
 
 ## The Science
 
-**Rohrer & Taylor (2007)** documented the core phenomenon. In their experiments with geometry problems, students either practiced in blocks (all volume, then all surface area) or interleaved (mixed throughout). The results reversed the usual learning curve:
+**Rohrer & Taylor (2007)** documented the core phenomenon. This research demonstrates a core [desirable difficulty](/essays/desirable-difficulties/): mixing problem types feels harder during practice but creates durable, transferable skill. In their experiments with geometry problems, students either practiced in blocks (all volume, then all surface area) or interleaved (mixed throughout). The results reversed the usual learning curve:
 
 - **During practice**: Blocked practice produced better performance (faster, fewer errors)
 - **One week later**: Interleaved practice produced 63% accuracy vs 20% for blocked
@@ -151,6 +151,7 @@ Output: `Problem 1: Write a decorator that logs function execution time... Probl
 ---
 
 **Related:**
+- [Desirable Difficulties](/essays/desirable-difficulties/) — The keystone framework: mixing is a difficulty that creates transferable skill
 - [Spaced Repetition](/cognitive-tools/spaced-repetition/) — The optimal schedule for your interleaved practice
 - [Active Recall](/cognitive-tools/active-recall/) — The retrieval method that maximizes interleaving benefits
 - [Deep Work](/cognitive-tools/deep-work/) — Protecting focus to maintain effective interleaved practice

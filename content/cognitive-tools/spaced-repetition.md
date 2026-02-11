@@ -22,7 +22,7 @@ The spacing effect is the counterintuitive alternative. Study the same material 
 
 ## The Science
 
-**Ebbinghaus (1885)** established the baseline. His forgetting curves showed memory decay follows a power law, not a straight line. The rate of loss slows over time, but the initial drop is brutal. More critically, he observed that distributed practice—spacing out sessions—flattened the curve dramatically. This wasn't just slowing decay; it was changing how the memory was stored.
+**Ebbinghaus (1885)** established the baseline. Spacing is a [desirable difficulty](/essays/desirable-difficulties/)—the temporal gap requires effortful reconstruction that strengthens long-term retention. His forgetting curves showed memory decay follows a power law, not a straight line. The rate of loss slows over time, but the initial drop is brutal. More critically, he observed that distributed practice—spacing out sessions—flattened the curve dramatically. This wasn't just slowing decay; it was changing how the memory was stored.
 
 **Cepeda et al. (2008)** quantified the optimal gap. In a study with 1,354 participants learning obscure facts, they tested gaps ranging from same-day reviews to 3.5 months, with final tests up to a year later. The results produced a "temporal ridgeline":
 
@@ -122,7 +122,8 @@ Output: `{{c1::List comprehensions}} provide a {{c2::concise}} way to create lis
 
 ---
 
-**Related:** 
+**Related:**
+- [Desirable Difficulties](/essays/desirable-difficulties/) — The keystone framework: spacing is a difficulty that strengthens retention
 - [AI-Assisted Learning](/cognitive-tools/ai-assisted-learning/) — How to use AI tools without cognitive offloading, with spaced repetition integration for retention
 - [Active Recall](/cognitive-tools/active-recall/) — The retrieval practice method that maximizes spaced repetition effectiveness
 - [Interleaving](/cognitive-tools/interleaving/) — Mixing problem types to complete the spaced interleaved retrieval practice system

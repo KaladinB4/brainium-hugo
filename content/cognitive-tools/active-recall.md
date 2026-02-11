@@ -22,7 +22,7 @@ Students spend hours highlighting, re-reading, and reviewing notes. These are th
 
 ## The Science
 
-**Roediger & Karpicke (2006)** established the core finding. In a series of experiments, students read passages and then either repeatedly studied them or took tests on them. The results were stark:
+**Roediger & Karpicke (2006)** established the core finding. This research is foundational to the [desirable difficulties framework](/essays/desirable-difficulties/)—testing is a difficulty that feels hard during learning but optimizes long-term retention. In a series of experiments, students read passages and then either repeatedly studied them or took tests on them. The results were stark:
 
 - After 5 minutes: re-reading produced better recall than testing
 - After 2 days: testing produced 40% better recall
@@ -122,10 +122,12 @@ Output: `Q: What type of function describes Ebbinghaus's forgetting curve? A: Ex
 
 ---
 
-**Related:** 
+**Related:**
+- [Desirable Difficulties](/essays/desirable-difficulties/) — The keystone framework: testing is a difficulty that enhances learning
 - [Retrieval Practice Guide](/frameworks/retrieval-practice-guide/) — Comprehensive implementation guide for AI-assisted workflows
 - [Spaced Repetition](/cognitive-tools/spaced-repetition/) — The schedule for your active recall practice
 - [Interleaving](/cognitive-tools/interleaving/) — Mixing problem types to maximize active recall benefits
 - [Deep Work](/cognitive-tools/deep-work/) — Protecting attention for effective active recall
 - [Diffused Mode](/cognitive-tools/diffused-mode/) — Integration periods between active recall sessions
 - [AI-Assisted Learning](/cognitive-tools/ai-assisted-learning/) — Using AI for generation while keeping active recall for retention
+- [Elaborative Interrogation](/cognitive-tools/elaborative-interrogation/) — Pre-AI "why" questions to prepare for retrieval

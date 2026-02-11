@@ -425,4 +425,4 @@ tags: ["field-notes", "framework", "experiment"]
 
 - [Content Standards](/docs/content-standards/) — Quality and tone requirements
 - [Content Funnel](/docs/content-funnel/) — Strategic framework
-- [Research Article Template](/content/research/_article-template.md) — MOFU example
+- [Research Article Structure](/docs/content-standards/#research-articles) — MOFU format guidelines

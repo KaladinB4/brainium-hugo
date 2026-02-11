@@ -139,7 +139,7 @@ The research suggests you will.
 - [Your Brain on ChatGPT](/research/brain-on-chatgpt/) — EEG evidence of how AI changes neural engagement
 
 **The Mechanisms:**
-- [Why Debugging Skills Decay](/essays/debugging-skill-decay/) — The cognitive science behind skill atrophy with AI assistance
+- [Why Debugging Skills Decay](/essays/why-debugging-skills-are-disappearing/) — The cognitive science behind skill atrophy with AI assistance
 - [Cognitive Offloading: The 40-Year Pattern Behind AI Skill Decay](/essays/cognitive-offloading-research/) — From calculators to GPS to AI, why tools change cognition
 
 **The Solution:**

@@ -3,6 +3,8 @@ title: "Brainium — Research-Backed Guidance for Thinking with AI"
 description: "Practical frameworks for cognitive leverage in the AI era. Translating research into actionable strategies for learning with AI without losing your edge."
 ---
 
+# Research-backed guidance for thinking with AI
+
 AI can write your code, explain your concepts, and debug your errors. But something unexpected is happening: we're getting worse at the very skills AI is helping with.
 
 Brainium translates cutting-edge research into practical frameworks—so you can use AI as leverage without losing the thinking skills that matter.

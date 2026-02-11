@@ -158,5 +158,5 @@ Before publishing any piece:
 ## Related Documentation
 
 - [Content Standards](/docs/content-standards/) - Quality and tone requirements
-- [Article Template](/research/article-template/) - MOFU structure
+- [Content Templates](/docs/content-templates/) - MOFU structure reference
 - [Core Philosophy](/about/philosophy/) - Three Modes framework
